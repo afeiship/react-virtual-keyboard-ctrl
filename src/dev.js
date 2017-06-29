@@ -38,6 +38,7 @@ class App extends React.Component{
 
   _click1_2 = e =>{
     ReactVirtualKeyboardCtrl.show({
+      value:'13',
       type:'identity'
     })
   };
