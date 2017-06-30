@@ -9,7 +9,7 @@ import objectAssign from 'object-assign';
 import ReactPopup from 'react-popup';
 import ReactNumberKeyboard,{generator} from 'react-number-keyboard';
 import appendToDocument from 'react-append-to-document';
-
+import TYPES from './const';
 
 export default class extends PureComponent {
   /*===properties start===*/
@@ -22,12 +22,7 @@ export default class extends PureComponent {
       PropTypes.string,
       PropTypes.array
     ]),
-    type: PropTypes.oneOf([
-      'blank',
-      'identity',
-      'number',
-      'currency'
-    ])
+    type: PropTypes.oneOf(TYPES)
   };
 
   static defaultProps = {

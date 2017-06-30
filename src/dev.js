@@ -1,5 +1,5 @@
 import './dev.scss';
-import ReactVirtualKeyboardCtrl from './main';
+import {ReactVirtualKeyboardCtrl} from './main';
 
 /*===example start===*/
 

@@ -1,2 +1,7 @@
 import ReactVirtualKeyboardCtrl from 'components/react-virtual-keyboard-ctrl';
-export default ReactVirtualKeyboardCtrl;
+import TYPES from 'components/const';
+
+export {
+  TYPES,
+  ReactVirtualKeyboardCtrl
+};
