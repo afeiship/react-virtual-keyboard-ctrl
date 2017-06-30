@@ -33,27 +33,41 @@ class App extends React.Component{
       onDropClick: ()=>{
         console.log('on drop click...');
       }
+    }).then(()=>{
+      console.log('shown.');
     })
   };
 
   _click1_2 = e =>{
     ReactVirtualKeyboardCtrl.show({
       value:'13',
-      type:'identity'
+      type:'identity',
+      onChange: (inEvent)=>{
+        const {value} = inEvent.target;
+        console.log(value);
+      },
     })
   };
 
 
   _click1_4 = e =>{
     ReactVirtualKeyboardCtrl.show({
-      type:'number'
+      type:'number',
+      onChange: (inEvent)=>{
+        const {value} = inEvent.target;
+        console.log(value);
+      },
     })
   };
 
 
   _click1_5 = e =>{
     ReactVirtualKeyboardCtrl.show({
-      type:'currency'
+      type:'currency',
+      onChange: (inEvent)=>{
+        const {value} = inEvent.target;
+        console.log(value);
+      },
     })
   };
 

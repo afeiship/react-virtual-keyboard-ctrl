@@ -25,7 +25,6 @@ export default class extends PureComponent {
     type: PropTypes.oneOf([
       'blank',
       'identity',
-      'tel',
       'number',
       'currency'
     ])
