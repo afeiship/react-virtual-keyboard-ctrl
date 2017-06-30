@@ -124,7 +124,7 @@ export default class extends PureComponent {
       <ReactPopup
         {...props}
         ref='popup'
-        backdropStyle={{position:'fixed',opacity:'0.1'}}
+        backdropStyle={{position:'fixed',opacity:'0.01'}}
         onDropClick={this.state.onDropClick}
         className={classNames('react-virtual-keyboard-ctrl',className)}>
         <ReactNumberKeyboard
