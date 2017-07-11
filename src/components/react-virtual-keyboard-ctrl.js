@@ -68,6 +68,11 @@ export default class extends PureComponent {
     };
   }
 
+  componentWillReceiveProps(nextProps) {
+    this.setState(nextProps);
+  }
+
+
   get kbItems(){
     const {type} = this.state;
     switch(type){
