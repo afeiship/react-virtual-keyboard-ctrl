@@ -54,6 +54,10 @@ export default class extends PureComponent {
     return this._instance.component.hide();
   };
 
+  static update(inProps){
+    return this._instance.component.update(inProps);
+  };
+
   static destroy(){
     if(this._instance){
       this._instance.destroy();
@@ -71,7 +75,6 @@ export default class extends PureComponent {
   componentWillReceiveProps(nextProps) {
     this.setState(nextProps);
   }
-
 
   get kbItems(){
     const {type} = this.state;
@@ -95,11 +98,19 @@ export default class extends PureComponent {
     return inValue;
   }
 
-  show(inProps){
-    const { popup } = this.refs;
+  update(inProps){
     const newState = objectAssign({...this.props}, inProps );
     return new Promise((resolve)=>{
       this.setState(newState,()=>{
+        resolve();
+      });
+    });
+  }
+
+  show(inProps){
+    const { popup } = this.refs;
+    return new Promise((resolve)=>{
+      this.update( inProps ).then(()=>{
         popup.show().then(resolve);
       });
     });
