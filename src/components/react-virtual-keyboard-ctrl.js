@@ -9,7 +9,8 @@ import objectAssign from 'object-assign';
 import ReactPopup from 'react-popup';
 import ReactNumberKeyboard,{generator} from 'react-number-keyboard';
 import appendToDocument from 'react-append-to-document';
-import TYPES from './const';
+import TYPES,{items} from './const';
+import ReactIosToolbar from 'react-ios-toolbar';
 
 export default class extends PureComponent {
   /*===properties start===*/
@@ -17,7 +18,8 @@ export default class extends PureComponent {
     className: PropTypes.string,
     maxLength: PropTypes.number,
     onChange: PropTypes.func,
-    onDropClick: PropTypes.func,
+    onShown: PropTypes.func,
+    onHidden: PropTypes.func,
     value: PropTypes.oneOfType([
       PropTypes.string,
       PropTypes.array
@@ -30,7 +32,8 @@ export default class extends PureComponent {
     value:[],
     maxLength:Number.MAX_VALUE,
     onChange: noop,
-    onDropClick: noop
+    onShown: noop,
+    onHidden: noop
   };
   /*===properties end===*/
 
@@ -74,6 +77,10 @@ export default class extends PureComponent {
 
   componentWillReceiveProps(nextProps) {
     this.setState(nextProps);
+  }
+
+  componentWillUnmount() {
+    this.hide();
   }
 
   get kbItems(){
@@ -131,8 +138,12 @@ export default class extends PureComponent {
     });
   };
 
+  _onClick = inEvent => {
+    this.hide();
+  };
+
   render(){
-    const { className, onDropClick, maxLength, ...props } = this.props;
+    const { className, maxLength, ...props } = this.props;
     const { value } = this.state;
     const kbItems = this.kbItems;
 
@@ -140,9 +151,10 @@ export default class extends PureComponent {
       <ReactPopup
         {...props}
         ref='popup'
-        backdropStyle={{position:'fixed'}}
-        onDropClick={this.state.onDropClick}
+        backdrop={false}
         className={classNames('react-virtual-keyboard-ctrl',className)}>
+
+        <ReactIosToolbar items={items} onClick={this._onClick} />
         <ReactNumberKeyboard
           onChange={this._onChange}
           maxLength={this.state.maxLength}
