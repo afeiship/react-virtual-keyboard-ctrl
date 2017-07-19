@@ -78,17 +78,12 @@ export default class extends PureComponent {
     };
   }
 
-  componentWillMount() {
-    this.attachEvents();
-  }
-
   componentWillReceiveProps(nextProps) {
     this.setState(nextProps);
   }
 
   componentWillUnmount() {
     this.hide();
-    this.detachEvents();
   }
 
   get kbItems(){
@@ -138,15 +133,6 @@ export default class extends PureComponent {
     });
   }
 
-
-  attachEvents(){
-    this._docClickRes = NxDomEvent.on( document.body, 'click', this._onDocClick, false);
-  }
-
-  detachEvents(){
-    this._docClickRes.destroy();
-  }
-
   _onChange = inEvent => {
     const {onChange} = this.state;
     const {value} = inEvent.target;
@@ -158,22 +144,6 @@ export default class extends PureComponent {
   _onClick = inEvent => {
     this.hide();
   };
-
-
-  _onDocClick = inEvent => {
-    const { onDocClick } = this.state;
-    const { popup } = this.refs;
-    const dom = ReactDOM.findDOMNode(popup)
-    onDocClick({
-      target:{
-        value: {
-          contains: dom.contains(inEvent.target),
-          event: inEvent
-        }
-      }
-    });
-  };
-
 
   render(){
     const { className, maxLength, onDocClick,  ...props } = this.props;

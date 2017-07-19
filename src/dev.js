@@ -8,7 +8,10 @@ import {ReactVirtualKeyboardCtrl} from './main';
 
 class App extends React.Component{
   state = {
-
+    value1:'111',
+    value2:'222',
+    value3:'333',
+    value4:'444',
   };
 
   constructor(props){
@@ -25,10 +28,12 @@ class App extends React.Component{
   _click1_1 = e =>{
     ReactVirtualKeyboardCtrl.show({
       maxLength:10,
-      value:'1',
+      value:this.state.value1,
       onChange: (inEvent)=>{
         const {value} = inEvent.target;
-        console.log(value);
+        this.setState({value1: value},()=>{
+          console.log(this.state)
+        })
       },
       onDocClick: ()=>{
         console.log('on drop click...');
@@ -40,11 +45,27 @@ class App extends React.Component{
 
   _click1_2 = e =>{
     ReactVirtualKeyboardCtrl.show({
-      value:'13',
+      value:this.state.value2,
       type:'identity',
       onChange: (inEvent)=>{
         const {value} = inEvent.target;
-        console.log(value);
+        this.setState({value2: value},()=>{
+          console.log(this.state)
+        })
+      },
+    })
+  };
+
+
+  _click1_3 = e =>{
+    ReactVirtualKeyboardCtrl.show({
+      type:'number',
+      value:this.state.value3,
+      onChange: (inEvent)=>{
+        const {value} = inEvent.target;
+        this.setState({value3: value},()=>{
+          console.log(this.state)
+        })
       },
     })
   };
@@ -52,21 +73,13 @@ class App extends React.Component{
 
   _click1_4 = e =>{
     ReactVirtualKeyboardCtrl.show({
-      type:'number',
-      onChange: (inEvent)=>{
-        const {value} = inEvent.target;
-        console.log(value);
-      },
-    })
-  };
-
-
-  _click1_5 = e =>{
-    ReactVirtualKeyboardCtrl.show({
       type:'currency',
+      value:this.state.value4,
       onChange: (inEvent)=>{
         const {value} = inEvent.target;
-        console.log(value);
+        this.setState({value4: value},()=>{
+          console.log(this.state)
+        })
       },
     })
   };
@@ -81,8 +94,8 @@ class App extends React.Component{
       <div className="hello-react-virtual-keyboard-ctrl">
         <button onClick={this._click1_1}>Show - default</button>
         <button onClick={this._click1_2}>Show - identity</button>
-        <button onClick={this._click1_4}>Show - number</button>
-        <button onClick={this._click1_5}>Show - currency</button>
+        <button onClick={this._click1_3}>Show - number</button>
+        <button onClick={this._click1_4}>Show - currency</button>
         <button onClick={this._click2}>Hide</button>
       </div>
     );
