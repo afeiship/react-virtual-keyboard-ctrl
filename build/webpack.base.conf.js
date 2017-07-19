@@ -14,6 +14,8 @@ var externals = process.env.NODE_ENV === 'production' ? {
   classnames: 'classnames',
   'react-dom': 'react-dom',
   'noop':'noop',
+  'react-ios-toolbar':'react-ios-toolbar',
+  'next-dom-event':'next-dom-event',
   'react-append-to-document':'react-append-to-document',
   'react-popup':'react-popup',
   'react-number-keyboard':'react-number-keyboard',

@@ -30,7 +30,7 @@ class App extends React.Component{
         const {value} = inEvent.target;
         console.log(value);
       },
-      onDropClick: ()=>{
+      onDocClick: ()=>{
         console.log('on drop click...');
       }
     }).then(()=>{

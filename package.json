@@ -82,6 +82,7 @@
   },
   "dependencies": {
     "classnames": "^2.2.5",
+    "next-dom-event": "github:afeiship/next-dom-event",
     "noop": "github:afeiship/noop",
     "object-assign": "^4.1.1",
     "prop-types": "^15.5.10",

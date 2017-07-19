@@ -11,6 +11,7 @@ import ReactNumberKeyboard,{generator} from 'react-number-keyboard';
 import appendToDocument from 'react-append-to-document';
 import TYPES,{items} from './const';
 import ReactIosToolbar from 'react-ios-toolbar';
+import NxDomEvent from 'next-dom-event';
 
 export default class extends PureComponent {
   /*===properties start===*/
@@ -20,6 +21,7 @@ export default class extends PureComponent {
     onChange: PropTypes.func,
     onShown: PropTypes.func,
     onHidden: PropTypes.func,
+    onDocClick: PropTypes.func,
     value: PropTypes.oneOfType([
       PropTypes.string,
       PropTypes.array
@@ -33,7 +35,8 @@ export default class extends PureComponent {
     maxLength:Number.MAX_VALUE,
     onChange: noop,
     onShown: noop,
-    onHidden: noop
+    onHidden: noop,
+    onDocClick: noop
   };
   /*===properties end===*/
 
@@ -75,12 +78,17 @@ export default class extends PureComponent {
     };
   }
 
+  componentWillMount() {
+    this.attachEvents();
+  }
+
   componentWillReceiveProps(nextProps) {
     this.setState(nextProps);
   }
 
   componentWillUnmount() {
     this.hide();
+    this.detachEvents();
   }
 
   get kbItems(){
@@ -130,6 +138,15 @@ export default class extends PureComponent {
     });
   }
 
+
+  attachEvents(){
+    this._docClickRes = NxDomEvent.on( document.body, 'click', this._onDocClick, false);
+  }
+
+  detachEvents(){
+    this._docClickRes.destroy();
+  }
+
   _onChange = inEvent => {
     const {onChange} = this.state;
     const {value} = inEvent.target;
@@ -142,8 +159,24 @@ export default class extends PureComponent {
     this.hide();
   };
 
+
+  _onDocClick = inEvent => {
+    const { onDocClick } = this.props;
+    const { popup } = this.refs;
+    const dom = ReactDOM.findDOMNode(popup)
+    onDocClick({
+      target:{
+        value: {
+          contains: dom.contains(inEvent.target),
+          event: inEvent
+        }
+      }
+    });
+  };
+
+
   render(){
-    const { className, maxLength, ...props } = this.props;
+    const { className, maxLength, onDocClick,  ...props } = this.props;
     const { value } = this.state;
     const kbItems = this.kbItems;
 
