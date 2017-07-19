@@ -161,7 +161,7 @@ export default class extends PureComponent {
 
 
   _onDocClick = inEvent => {
-    const { onDocClick } = this.props;
+    const { onDocClick } = this.state;
     const { popup } = this.refs;
     const dom = ReactDOM.findDOMNode(popup)
     onDocClick({
