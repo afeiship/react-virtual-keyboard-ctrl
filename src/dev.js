@@ -89,6 +89,10 @@ class App extends React.Component{
     ReactVirtualKeyboardCtrl.hide();
   };
 
+  _click = e =>{
+    console.log('click!!!');
+  };
+
   render(){
     return (
       <div className="hello-react-virtual-keyboard-ctrl">
@@ -96,6 +100,7 @@ class App extends React.Component{
         <button onClick={this._click1_2}>Show - identity</button>
         <button onClick={this._click1_3}>Show - number</button>
         <button onClick={this._click1_4}>Show - currency</button>
+        <button onClick={this._click}>Test click</button>
         <button onClick={this._click2}>Hide</button>
       </div>
     );
