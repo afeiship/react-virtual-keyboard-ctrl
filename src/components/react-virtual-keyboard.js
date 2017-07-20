@@ -122,7 +122,7 @@ export default class extends PureComponent {
   };
 
   render(){
-    const { className, maxLength,  ...props } = this.props;
+    const { className, maxLength, onShown,onHidden } = this.props;
     const { value } = this.state;
     const kbItems = this.kbItems;
 
@@ -130,6 +130,8 @@ export default class extends PureComponent {
       <ReactPopup
         {...props}
         ref='popup'
+        onShown={onShown}
+        onHidden={onHidden}
         backdrop={false}
         className={classNames('react-virtual-keyboard-ctrl',className)}>
 
