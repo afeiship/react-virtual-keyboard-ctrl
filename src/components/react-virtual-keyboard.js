@@ -128,7 +128,6 @@ export default class extends PureComponent {
 
     return (
       <ReactPopup
-        {...props}
         ref='popup'
         onShown={onShown}
         onHidden={onHidden}
