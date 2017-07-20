@@ -8,28 +8,25 @@ import noop from 'noop';
 import objectAssign from 'object-assign';
 import ReactPopup from 'react-popup';
 import ReactNumberKeyboard,{generator} from 'react-number-keyboard';
-
 import TYPES,{items} from './const';
 import ReactIosToolbar from 'react-ios-toolbar';
 
 export default class extends PureComponent {
   /*===properties start===*/
   static propTypes = {
+    type: PropTypes.oneOf(TYPES),
+    value: PropTypes.oneOfType([ PropTypes.string, PropTypes.array ]),
     className: PropTypes.string,
     maxLength: PropTypes.number,
     onChange: PropTypes.func,
     onShown: PropTypes.func,
     onHidden: PropTypes.func,
-    value: PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.array
-    ]),
-    type: PropTypes.oneOf(TYPES)
   };
 
   static defaultProps = {
     type:'blank',
     value:[],
+    className:'',
     maxLength:Number.MAX_VALUE,
     onChange: noop,
     onShown: noop,
@@ -103,8 +100,12 @@ export default class extends PureComponent {
     const {onChange} = this.state;
     const {value} = inEvent.target;
     const newValue = this.getValue( value );
-    onChange({
-      target:{ value: newValue }
+    const oldValue = this.getValue( this.state.value );
+
+    this.setState({ value },()=>{
+      onChange({
+        target:{ value: newValue }
+      });
     });
   };
 

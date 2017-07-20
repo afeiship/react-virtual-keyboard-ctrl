@@ -34,7 +34,6 @@ class App extends React.Component{
         this.setState({value1: value},()=>{
           console.log(this.state)
         })
-
       },
       onDocClick: ()=>{
         console.log('on drop click...');
