@@ -129,8 +129,8 @@ export default class extends PureComponent {
     return (
       <ReactPopup
         ref='popup'
-        onShown={onShown}
-        onHidden={onHidden}
+        onShown={this.state.onShown}
+        onHidden={this.state.onHidden}
         backdrop={false}
         className={classNames('react-virtual-keyboard-ctrl',className)}>
 

@@ -35,6 +35,9 @@ class App extends React.Component{
           console.log(this.state)
         })
       },
+      onHidden:()=>{
+        console.log('on hidden..');
+      },
       onDocClick: ()=>{
         console.log('on drop click...');
       }
