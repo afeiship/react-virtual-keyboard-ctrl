@@ -1,16 +1,10 @@
-import appendToDocument from 'react-append-to-document';
 import ReactVirtualKeyboard from 'components/react-virtual-keyboard';
 
 export default class {
   static _instance = null;
-  static newInstance(inProps){
-    return appendToDocument(ReactVirtualKeyboard, inProps,{
-      className:'react-virtual-keyboard-container'
-    });
-  };
 
   static createInstance(inProps){
-    this._instance = this._instance || this.newInstance(inProps);
+    this._instance = this._instance || ReactVirtualKeyboard.newInstance(inProps);
     return this._instance;
   };
 

@@ -10,6 +10,8 @@ import ReactPopup from 'react-popup';
 import ReactNumberKeyboard,{generator} from 'react-number-keyboard';
 import TYPES,{items} from './const';
 import ReactIosToolbar from 'react-ios-toolbar';
+import appendToDocument from 'react-append-to-document';
+
 
 export default class extends PureComponent {
   /*===properties start===*/
@@ -33,6 +35,12 @@ export default class extends PureComponent {
     onHidden: noop,
   };
   /*===properties end===*/
+
+  static newInstance(inProps){
+    return appendToDocument(this, inProps,{
+      className:'react-virtual-keyboard-container'
+    });
+  };
 
   constructor(props) {
     super(props);
